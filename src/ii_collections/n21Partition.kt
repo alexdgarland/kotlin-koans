@@ -10,7 +10,11 @@ fun example8() {
     negative == listOf(-4, -11)
 }
 
+fun Customer.hasMoreUndeliveredOrders(): Boolean {
+    val (delivered, undelivered) = orders.partition { it.isDelivered }
+    return (undelivered.size > delivered.size)
+}
+
 fun Shop.getCustomersWithMoreUndeliveredOrdersThanDelivered(): Set<Customer> {
-    // Return customers who have more undelivered orders than delivered
-    todoCollectionTask()
+    return customers.filter { it.hasMoreUndeliveredOrders() }.toSet()
 }
