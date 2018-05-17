@@ -20,7 +20,7 @@ class N07NullableTypesKtTest {
                         email, actualEmail)
             }
         })
-        assertEquals("The function 'sendMessage' should${if (shouldBeInvoked) "" else "n't"} be invoked",
+        assertEquals("The function 'sendMessage' should${if (shouldBeInvoked) "" else "number't"} be invoked",
                 shouldBeInvoked, invoked)
     }
 

@@ -6,7 +6,7 @@ import org.junit.Test
 
 class N26InRangeKtTest {
     fun doTest(date: MyDate, first: MyDate, last: MyDate, shouldBeInRange: Boolean) {
-        val message = "The date ${date.s} should${if (shouldBeInRange) "" else "n't"} be in range: ${first.s}..${last.s}"
+        val message = "The date ${date.s} should${if (shouldBeInRange) "" else "number't"} be in range: ${first.s}..${last.s}"
         assertEquals(message, shouldBeInRange, checkInRange(date, first, last))
     }
 
