@@ -19,12 +19,20 @@ fun task41(): Nothing = TODO(
         }
 )
 
+fun <T, C : MutableCollection<T>> Collection<T>.partitionTo(coll1 : C, coll2 : C, f : (T) -> Boolean) : Pair<C, C>{
+    // This doesn't perform as well as the provided imperative resolution
+    // (which does a single pass in n rather than 2n+ time and avoids creating intermediate lists)
+    // but eh, screw it, I like playing around with functional approaches ...
+    // ... and the tests pass.
+    filter(f).toCollection(coll1)
+    filter({ t : T -> !f(t) }).toCollection(coll2)
+    return Pair(coll1, coll2)
+}
+
 fun List<String>.partitionWordsAndLines(): Pair<List<String>, List<String>> {
-    task41()
-//    return partitionTo(ArrayList<String>(), ArrayList()) { s -> !s.contains(" ") }
+    return partitionTo(ArrayList<String>(), ArrayList()) { s -> !s.contains(" ") }
 }
 
 fun Set<Char>.partitionLettersAndOtherSymbols(): Pair<Set<Char>, Set<Char>> {
-    task41()
-//    return partitionTo(HashSet<Char>(), HashSet()) { c -> c in 'a'..'z' || c in 'A'..'Z'}
+    return partitionTo(HashSet<Char>(), HashSet()) { c -> c in 'a'..'z' || c in 'A'..'Z'}
 }
